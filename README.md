@@ -1,3 +1,22 @@
+## Description
+To run this application, first you need to set up and run server from<br/>
+https://github.com/avrahamm/soft-years <br/>
+and then to launch this project on the same machine with virtual host <br/>
+<br/> www.soft.server
+<br/> as clients relies on that api url.
+<br/> see src/DALUtils.js, 
+<br/> const apiUrl = `http://www.soft.server/years`;
+
+Shortly,<br/>
+it will render list of years come from the server,<br/>
+then clicking on each year fetches the year data from server and renders it on page.<br/>
+
+So clone to your machine, <br/>
+git clone https://github.com/avrahamm/soft-years-react-client.git soft-years-react-client  <br/>
+cd soft-years-react-client  <br/>
+npm install <br/>
+
+## Technical
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
