@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Circle from 'react-circle';
 import DAL from '../DALUtils';
 
 class App extends Component {
@@ -61,15 +62,6 @@ class App extends Component {
 
     render() {
         console.log("render");
-        let yearItems = this.state.years.map( (item,index) =>
-        {
-            return <li key={index} value={item.year}
-                       className={"cursor-pointer"}
-                       onClick={this.setYear} >
-                {item.year}
-            </li>;
-        });
-
         let categoryItems = this.state.yearData.categories.map( (item, index) =>
         {
             return <div key={index}>
@@ -77,6 +69,29 @@ class App extends Component {
                 <span style={{margin: "0 10px"}}>{item.value}</span>
                 <span style={{margin: "0 10px"}}>{item.title}</span>
             </div>;
+        });
+
+        let circle1, circle2;
+
+        if(this.state.yearData.circle2) {
+            circle2 = <Circle
+                progress={this.state.yearData.circle2}
+            />;
+        }
+
+        if(this.state.yearData.circle1) {
+            circle1 = <Circle
+                progress={this.state.yearData.circle1}
+            />;
+        }
+
+        let yearItems = this.state.years.map( (item,index) =>
+        {
+            return <li key={index} value={item.year}
+                       className={"cursor-pointer"}
+                       onClick={this.setYear} >
+                {item.year}
+            </li>;
         });
 
         return (
@@ -97,8 +112,12 @@ class App extends Component {
                                     {categoryItems}
                                 </ul>
                             </td>
-                            <td>{this.state.yearData.circle2}</td>
-                            <td>{this.state.yearData.circle1}</td>
+                            <td>
+                                {circle2}
+                            </td>
+                            <td>
+                                {circle1}
+                            </td>
                             <td>
                                 <ul>
                                     {yearItems}
