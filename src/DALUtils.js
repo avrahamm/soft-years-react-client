@@ -4,7 +4,7 @@ import axios from 'axios';
  * Api url address.
  * @type {string}
  */
-const apiUrl = `http://www.soft.test/years`;
+const apiUrl = `http://www.soft.server/years`;
 
 /**
  * Returns year data
