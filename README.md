@@ -1,3 +1,11 @@
+## Description
+To run this application, first you need to set up and run server from<br/>
+https://github.com/avrahamm/soft-years
+Shortly,<br/>
+it will render list of years come from the server,<br/>
+then clicking on each year fetches the year data from server and renders it on page.<br/>
+
+## Technical
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
