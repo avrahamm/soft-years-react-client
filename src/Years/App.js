@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Circle from 'react-circle';
+import Progress from 'react-progressbar';
+
 import DAL from '../DALUtils';
 
 class App extends Component {
@@ -64,9 +66,11 @@ class App extends Component {
         console.log("render");
         let categoryItems = this.state.yearData.categories.map( (item, index) =>
         {
+            let completed = Number.parseInt((item.value/item.maximum_value)*100);
             return <div key={index}>
-                <span style={{margin: "0 10px"}}>{item.maximum_value}</span>
-                <span style={{margin: "0 10px"}}>{item.value}</span>
+                <span style={{margin: "0 10px"}}>
+                        <Progress completed={completed} />
+                </span>
                 <span style={{margin: "0 10px"}}>{item.title}</span>
             </div>;
         });
