@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import DAL from '../DALUtils';
 
 class App extends Component {
     constructor(props)
@@ -24,7 +24,7 @@ class App extends Component {
         {
             return {year:selectedYear};
         });
-    }
+    };
 
     /**
      * Fetches years to update state.
@@ -33,9 +33,8 @@ class App extends Component {
     {
         console.log("componentDidMount");
         // Typical usage (don't forget to compare props):
-        axios.get(`http://www.soft.test/years`)
+        DAL.getYearsList()
             .then(resp => {
-                // console.log(resp)
                 this.setState(() => {
                     return {years: resp.data.data}
                 }, () => {
@@ -49,7 +48,7 @@ class App extends Component {
         console.log("componentDidUpdate");
         // Typical usage (don't forget to compare):
         if (this.state.year !== prevState.year) {
-            axios.get(`http://www.soft.test/years/${this.state.year}`)
+            DAL.getYearData(this.state.year)
                 .then( response =>
                 {
                     // console.log(response.data.data);
@@ -62,7 +61,7 @@ class App extends Component {
 
     render() {
         console.log("render");
-        let yearsItems = this.state.years.map( (item,index) =>
+        let yearItems = this.state.years.map( (item,index) =>
         {
             return <li key={index} value={item.year}
                        className={"cursor-pointer"}
@@ -73,12 +72,12 @@ class App extends Component {
 
         let categoryItems = this.state.yearData.categories.map( (item, index) =>
         {
-            return <div key={index} value={item.title}>
+            return <div key={index}>
                 <span style={{margin: "0 10px"}}>{item.maximum_value}</span>
                 <span style={{margin: "0 10px"}}>{item.value}</span>
                 <span style={{margin: "0 10px"}}>{item.title}</span>
             </div>;
-        })
+        });
 
         return (
             <div className="Container">
@@ -102,7 +101,7 @@ class App extends Component {
                             <td>{this.state.yearData.circle1}</td>
                             <td>
                                 <ul>
-                                    {yearsItems}
+                                    {yearItems}
                                 </ul>
                             </td>
                         </tr>
