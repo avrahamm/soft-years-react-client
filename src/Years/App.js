@@ -56,7 +56,7 @@ class App extends Component {
                 {
                     // console.log(response.data.data);
                     this.setState( () => {
-                        return {yearData:JSON.parse(response.data.data)};
+                        return {yearData:JSON.parse(response)};
                     }, () => console.log(this.state.yearData))
                 })
                 .catch(err => console.log(err))        }

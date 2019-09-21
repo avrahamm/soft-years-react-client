@@ -8,12 +8,27 @@ const apiUrl = `http://www.soft.server/years`;
 
 /**
  * Returns year data
+ *
  * @param year
- * @returns {Promise<AxiosResponse<T>>}
+ * @returns {Promise<string>}
  */
 let getYearData = (year) =>
 {
-    return axios.get(`${apiUrl}/${year}`)
+    return Promise.resolve(year)
+        .then( (year) =>
+        {
+            let yearData = localStorage.getItem(`yearData${year}`);
+            if (yearData !== null) {
+                return Promise.resolve(yearData);
+            }
+            return axios.get(`${apiUrl}/${year}`)
+                .then(response =>
+                {
+                    localStorage.setItem(`yearData${year}`,response.data.data);
+                    return Promise.resolve(response.data.data);
+                })
+        }
+    )
 };
 
 /**
@@ -22,6 +37,7 @@ let getYearData = (year) =>
  */
 let getYearsList = () =>
 {
+    localStorage.clear();
     return axios.get(apiUrl);
 };
 
