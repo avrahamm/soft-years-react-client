@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Circle from 'react-circle';
 import Progress from 'react-progressbar';
 
-import DAL from '../DALUtils';
+import DAL from './DALUtils';
 
 class App extends Component {
     constructor(props)
